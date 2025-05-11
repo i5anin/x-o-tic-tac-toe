@@ -9,7 +9,7 @@ const FieldLayout = ({ field, onCellClick }) => {
 			{field.map((cell, index) => (
 				<button
 					key={index}
-					className={styles.cell}
+					className={`${styles.cell} ${cell === 'X' ? styles.x : ''} ${cell === '0' ? styles.o : ''}`}
 					onClick={() => onCellClick(index)}
 				>
 					{cell}

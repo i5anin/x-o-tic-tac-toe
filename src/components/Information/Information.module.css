@@ -2,3 +2,13 @@
 	font-size: 24px;
 	font-weight: bold;
 }
+
+.x {
+	color: #e53935; /* красный */
+	margin-left: 5px;
+}
+
+.o {
+	color: #1e88e5; /* синий */
+	margin-left: 5px;
+}
