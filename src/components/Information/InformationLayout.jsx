@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import styles from './Information.module.css';
 
 const InformationLayout = ({ status }) => (
@@ -7,7 +8,7 @@ const InformationLayout = ({ status }) => (
 );
 
 InformationLayout.propTypes = {
-	status: PropTypes.string.isRequired
+	status: PropTypes.string.isRequired,
 };
 
 export default InformationLayout;

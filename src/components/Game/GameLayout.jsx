@@ -1,10 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Information from '../Information/Information';
 import Field from '../Field/Field';
-import PropTypes from 'prop-types';
+
 import styles from './Game.module.css';
 
-const GameLayout = ({ currentPlayer, field, isGameEnded, isDraw, onCellClick, onReset }) => (
+const GameLayout = ({
+	currentPlayer,
+	field,
+	isGameEnded,
+	isDraw,
+	onCellClick,
+	onReset,
+}) => (
 	<div className={styles.game}>
 		<Information
 			currentPlayer={currentPlayer}
@@ -24,7 +33,7 @@ GameLayout.propTypes = {
 	isGameEnded: PropTypes.bool.isRequired,
 	isDraw: PropTypes.bool.isRequired,
 	onCellClick: PropTypes.func.isRequired,
-	onReset: PropTypes.func.isRequired
+	onReset: PropTypes.func.isRequired,
 };
 
 export default GameLayout;

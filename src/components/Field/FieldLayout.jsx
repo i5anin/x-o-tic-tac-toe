@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import styles from './Field.module.css';
 
 const FieldLayout = ({ field, onCellClick }) => {
@@ -20,7 +21,7 @@ const FieldLayout = ({ field, onCellClick }) => {
 
 FieldLayout.propTypes = {
 	field: PropTypes.arrayOf(PropTypes.string).isRequired,
-	onCellClick: PropTypes.func.isRequired
+	onCellClick: PropTypes.func.isRequired,
 };
 
 export default FieldLayout;
