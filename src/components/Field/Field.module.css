@@ -1,0 +1,14 @@
+.field {
+	display: grid;
+	grid-template-columns: repeat(3, 80px);
+	grid-gap: 10px;
+}
+
+.cell {
+	width: 80px;
+	height: 80px;
+	font-size: 32px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+}
