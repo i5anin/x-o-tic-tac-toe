@@ -1,35 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { store } from '../redux/store';
 import Information from '../Information/Information.jsx';
 import Field from '../Field/Field.jsx';
 
 const GameLayout = () => {
-	const [state, setState] = useState(store.getState());
-
-	useEffect(() => {
-		const unsubscribe = store.subscribe(() => {
-			setState(store.getState());
-		});
-		return unsubscribe;
-	}, []);
+	const { currentPlayer, field, isGameEnded, isDraw } = useSelector(state => state);
+	const dispatch = useDispatch();
 
 	const handleCellClick = (index) => {
-		store.dispatch({ type: 'CELL_CLICK', payload: { index } });
+		dispatch({ type: 'CELL_CLICK', payload: { index } });
 	};
 
 	const handleReset = () => {
-		store.dispatch({ type: 'RESET' });
+		dispatch({ type: 'RESET' });
 	};
 
 	return (
 		<div>
 			<Information
-				currentPlayer={state.currentPlayer}
-				isGameEnded={state.isGameEnded}
-				isDraw={state.isDraw}
+				currentPlayer={currentPlayer}
+				isGameEnded={isGameEnded}
+				isDraw={isDraw}
 			/>
-			<Field field={state.field} onCellClick={handleCellClick} />
+			<Field field={field} onCellClick={handleCellClick} />
 			<button onClick={handleReset}>Начать заново</button>
 		</div>
 	);
