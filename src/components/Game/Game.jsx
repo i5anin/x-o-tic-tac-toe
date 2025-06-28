@@ -1,66 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import GameLayout from './GameLayout';
+import { store } from '../redux/store';
+import Information from '../Information/Information.jsx';
+import Field from '../Field/Field.jsx';
 
-const initialField = Array(9).fill('');
+const GameLayout = () => {
+	const [state, setState] = useState(store.getState());
 
-const WIN_PATTERNS = [
-	[0, 1, 2],
-	[3, 4, 5],
-	[6, 7, 8],
-	[0, 3, 6],
-	[1, 4, 7],
-	[2, 5, 8],
-	[0, 4, 8],
-	[2, 4, 6],
-];
-
-const Game = () => {
-	const [currentPlayer, setCurrentPlayer] = useState('X');
-	const [field, setField] = useState(initialField);
-	const [isGameEnded, setIsGameEnded] = useState(false);
-	const [isDraw, setIsDraw] = useState(false);
+	useEffect(() => {
+		const unsubscribe = store.subscribe(() => {
+			setState(store.getState());
+		});
+		return unsubscribe;
+	}, []);
 
 	const handleCellClick = (index) => {
-		if (field[index] || isGameEnded) return;
-
-		const newField = [...field];
-		newField[index] = currentPlayer;
-		setField(newField);
-
-		const hasWinner = WIN_PATTERNS.some(
-			([a, b, c]) =>
-				newField[a] === currentPlayer &&
-				newField[b] === currentPlayer &&
-				newField[c] === currentPlayer,
-		);
-
-		if (hasWinner) {
-			setIsGameEnded(true);
-		} else if (newField.every((cell) => cell)) {
-			setIsDraw(true);
-		} else {
-			setCurrentPlayer(currentPlayer === 'X' ? '0' : 'X');
-		}
+		store.dispatch({ type: 'CELL_CLICK', payload: { index } });
 	};
 
 	const handleReset = () => {
-		setCurrentPlayer('X');
-		setField(initialField);
-		setIsGameEnded(false);
-		setIsDraw(false);
+		store.dispatch({ type: 'RESET' });
 	};
 
 	return (
-		<GameLayout
-			currentPlayer={currentPlayer}
-			field={field}
-			isGameEnded={isGameEnded}
-			isDraw={isDraw}
-			onCellClick={handleCellClick}
-			onReset={handleReset}
-		/>
+		<div>
+			<Information
+				currentPlayer={state.currentPlayer}
+				isGameEnded={state.isGameEnded}
+				isDraw={state.isDraw}
+			/>
+			<Field field={state.field} onCellClick={handleCellClick} />
+			<button onClick={handleReset}>Начать заново</button>
+		</div>
 	);
 };
 
-export default Game;
+export default GameLayout;
