@@ -1,15 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useReduxState } from '../../useReduxState';
 
 import FieldLayout from './FieldLayout';
 
-const Field = ({ field, onCellClick }) => {
-	return <FieldLayout field={field} onCellClick={onCellClick} />;
-};
+const Field = ({ onCellClick }) => {
+	const { field } = useReduxState();
 
-Field.propTypes = {
-	field: PropTypes.arrayOf(PropTypes.string).isRequired,
-	onCellClick: PropTypes.func.isRequired,
+	return <FieldLayout field={field} onCellClick={onCellClick} />;
 };
 
 export default Field;
