@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useReduxState } from '../../useReduxState';
 
 import InformationLayout from './InformationLayout';
 
-const Information = ({ currentPlayer, isGameEnded, isDraw }) => {
-	let status;
+const Information = () => {
+	const { currentPlayer, isGameEnded, isDraw } = useReduxState();
 
+	let status;
 	if (isDraw) {
 		status = 'Ничья';
 	} else if (isGameEnded) {
@@ -15,12 +15,6 @@ const Information = ({ currentPlayer, isGameEnded, isDraw }) => {
 	}
 
 	return <InformationLayout status={status} />;
-};
-
-Information.propTypes = {
-	currentPlayer: PropTypes.string.isRequired,
-	isGameEnded: PropTypes.bool.isRequired,
-	isDraw: PropTypes.bool.isRequired,
 };
 
 export default Information;

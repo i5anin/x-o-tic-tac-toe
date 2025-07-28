@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Information from '../Information/Information';
+import Field from '../Field/Field';
+import { store } from '../redux/store.js';
+import { useReduxState } from '../useReduxState.js';
 
-import { store } from '../redux/store';
-import Information from '../Information/Information.jsx';
-import Field from '../Field/Field.jsx';
+import styles from './Game.module.css';
 
-const GameLayout = () => {
-	const [state, setState] = useState(store.getState());
-
-	useEffect(() => {
-		const unsubscribe = store.subscribe(() => {
-			setState(store.getState());
-		});
-		return unsubscribe;
-	}, []);
+const Game = () => {
+	const { currentPlayer, field, isGameEnded, isDraw } = useReduxState();
 
 	const handleCellClick = (index) => {
 		store.dispatch({ type: 'CELL_CLICK', payload: { index } });
@@ -23,16 +18,18 @@ const GameLayout = () => {
 	};
 
 	return (
-		<div>
+		<div className={styles.game}>
 			<Information
-				currentPlayer={state.currentPlayer}
-				isGameEnded={state.isGameEnded}
-				isDraw={state.isDraw}
+				currentPlayer={currentPlayer}
+				isGameEnded={isGameEnded}
+				isDraw={isDraw}
 			/>
-			<Field field={state.field} onCellClick={handleCellClick} />
-			<button onClick={handleReset}>Начать заново</button>
+			<Field field={field} onCellClick={handleCellClick} />
+			<button className={styles.reset} onClick={handleReset}>
+				Начать заново
+			</button>
 		</div>
 	);
 };
 
-export default GameLayout;
+export default Game;

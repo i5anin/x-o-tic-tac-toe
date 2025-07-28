@@ -15,11 +15,7 @@ const GameLayout = ({
 	onReset,
 }) => (
 	<div className={styles.game}>
-		<Information
-			currentPlayer={currentPlayer}
-			isGameEnded={isGameEnded}
-			isDraw={isDraw}
-		/>
+		<Information		/>
 		<Field field={field} onCellClick={onCellClick} />
 		<button className={styles.reset} onClick={onReset}>
 			Начать заново
