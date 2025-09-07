@@ -1,126 +1,70 @@
+# Getting Started with Create React App
 
-# 🎮 Крестики-Нолики на React
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Игра "Крестики-Нолики", реализованная на React + Vite с использованием современных стандартов разработки 2025 года.
-Подходит для обучения состояниям, работе с компонентами и логике React-приложений.
+## Available Scripts
 
----
+In the project directory, you can run:
 
-## 📸 Превью интерфейса
+### `npm start`
 
-Игровое поле 3×3, информация о текущем ходе или победителе, а также кнопка «Начать заново».
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-![Превью](./preview-tic-tac-toe.png)
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
----
+### `npm test`
 
-## 🚀 Как запустить
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```bash
-# Установка зависимостей
-npm install
+### `npm run build`
 
-# Запуск приложения
-npm run dev
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-# Сборка для продакшена
-npm run build
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-# Проверка кода eslint
-npm run lint
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-# Автоисправление форматирования и ошибок eslint
-npm run lint:fix
+### `npm run eject`
 
-# Проверка неиспользуемых зависимостей
-npm run check:deps
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-# Форматирование кода Prettier
-npm run format
-```
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
----
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## 🛠 Используемые технологии
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-* **React 19**
-* **Vite 6**
-* **ESLint 9 (FlatConfig)**
-* **Prettier 3**
-* **CSS-модули**
-* **PropTypes** для валидации props
-* **depcheck** — для анализа зависимостей
-* Поддержка Fast Refresh (`@vitejs/plugin-react-swc`)
+## Learn More
 
----
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-## 📋 Задание
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-**Цель:** реализовать функциональную игру «Крестики-Нолики» с чистым состоянием и логикой.
+### Code Splitting
 
-### 🔧 Условия:
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-* Игровое поле 3×3
-* Информация над полем:
+### Analyzing the Bundle Size
 
-	* текущий ход: `Ходит: X` / `Ходит: 0`
-	* победа: `Победа: X` / `Победа: 0`
-	* ничья: `Ничья`
-* При клике на клетку:
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-	* если ячейка пуста и игра не завершена, в неё записывается символ текущего игрока
-	* после хода:
+### Making a Progressive Web App
 
-		* если игрок собрал линию — победа
-		* если все ячейки заполнены без победителя — ничья
-		* если никто не победил — ход переходит ко второму игроку
-* Кнопка «Начать заново» сбрасывает поле и состояния
-* Вся логика построена через `useState`
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### 🧩 Архитектура компонентов:
+### Advanced Configuration
 
-```
-└── Game
-    └── GameLayout
-        ├── Information
-        │   └── InformationLayout
-        └── Field
-            └── FieldLayout
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
----
+### Deployment
 
-## 📦 Структура проекта
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-```
-src/
-├── assets/
-├── components/
-│   ├── Field/
-│   │   ├── Field.jsx
-│   │   ├── Field.module.css
-│   │   └── FieldLayout.jsx
-│   ├── Game/
-│   │   ├── Game.jsx
-│   │   ├── Game.module.css
-│   │   └── GameLayout.jsx
-│   └── Information/
-│       ├── Information.jsx
-│       ├── Information.module.css
-│       └── InformationLayout.jsx
-├── App.jsx
-├── App.module.css
-├── index.jsx
-├── index.css
-├── main.jsx
-```
+### `npm run build` fails to minify
 
----
-
-## ✅ Особенности реализации
-
-* Цветовая подсветка символов: ❌ — красный, 🔵 — синий
-* Динамический вывод статуса игрока
-* Чистый, масштабируемый код по принципам Clean Code
-* Полностью типизированные props через PropTypes
-
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
